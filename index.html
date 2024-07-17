@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const passLength = 12;
+        const includeUppercase = true;
+        const includeLowercase = true;
+        const includeNumber =true;
+        const includeSymbol = false;
+        const password = getnerateRandompassword(passLength,includeUppercase,includeLowercase,includeNumber,includeSymbol);
+
+        console.log(`Randomly generated password is : ${password}`)
+
+        function getnerateRandompassword(length, includeUppercase,includeLowercase,includeNumber,includeSymbol){
+            const ucaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const lcaseChars = "abcdefghijklmnopqrstuvwxyz";
+            const numberChars = "0123456789";
+            const symbolChars = "!@#$%^&*()_+.=";
+            let password = '';
+            let allowedChars = '';
+            allowedChars+=includeUppercase?ucaseChars:'';
+            allowedChars+=includeLowercase?lcaseChars:'';
+            allowedChars+=includeNumber?numberChars:'';
+            allowedChars+=includeSymbol?symbolChars:'';
+
+            if(length<=0){return "Password should be at least 1 character"};
+            if(allowedChars.length===0){return "Password should be at least 1 character set"}
+
+            for (i=1;i<=passLength;i++){
+                const index = Math.floor(Math.random()*allowedChars.length);
+                password = password+ allowedChars[index];
+            }  
+            
+            return password;
+
+        }
+    </script>
+</body>
+</html>
